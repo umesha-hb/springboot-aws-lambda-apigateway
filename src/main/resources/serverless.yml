@@ -1,0 +1,3 @@
+functions:
+  create:
+    handler: com.uttara.aws.lambda.OrderHandler
