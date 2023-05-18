@@ -20,15 +20,12 @@ import java.util.stream.Collectors;
 public class SpringbootAwsLambdaApplication {
 
 
-private final OrderDao orderDao;
-
-    public SpringbootAwsLambdaApplication(OrderDao orderDao) {
-        this.orderDao = orderDao;
-    }
+    @Autowired
+    private OrderDao orderDao;
 
     @Bean
     public Supplier<List<Order>> orders() {
-        return orderDao::buildOrders;
+        return () -> orderDao.buildOrders();
     }
 
     @Bean
@@ -38,6 +35,7 @@ private final OrderDao orderDao;
 
 
     public static void main(String[] args) {
+
         SpringApplication.run(SpringbootAwsLambdaApplication.class, args);
     }
 
